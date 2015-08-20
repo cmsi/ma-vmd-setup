@@ -218,7 +218,7 @@ class Frame(wx.Frame):
         dialog.Destroy()
 
     def StartCompile(self, file):
-        vmddir = os.path.join(self.prefix, 'share', 'vmd')
+        vmddir = os.path.join(self.prefix, 'libexec', 'vmd')
         if (os.path.exists(vmddir)):
             dialog = wx.MessageDialog(None, vmddir + ' already exists.  Clean up and install VMD anyway?', 'VMD Setup', wx.OK | wx.CANCEL | wx.ICON_QUESTION)
             if dialog.ShowModal() == wx.ID_OK:

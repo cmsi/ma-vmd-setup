@@ -24,7 +24,7 @@ fi
 
 BUILDDIR="$HOME/build"
 PREFIX="$PREFIX"
-VMDDIR="$PREFIX/share/vmd"
+VMDDIR="$PREFIX/libexec/vmd"
 
 if [ -d "$VMDDIR" ]; then
   echo "Error: VMD directory exists ($VMDDIR)"
@@ -66,5 +66,4 @@ cd $BUILDDIR/vmd-$VERSION
 VMDINSTALLBINDIR=$PREFIX/bin VMDINSTALLLIBRARYDIR=$PREFIX/libexec/vmd PLUGINDIR=$PREFIX/libexec/vmd ./configure LINUXAMD64 IMD LIBTACHYON NETCDF COLVARS TCL PTHREADS
 cd src
 make INCDIRS="-I/usr/include/tachyon -I/usr/include/tcl -I../plugins/include -I../plugins/LINUXAMD64/molfile -I../lib/netcdf/include -I$PREFIX/libexec/vmd/plugins/LINUXAMD64/molfile -I." LIBDIRS="-L$PREFIX/libexec/vmd/plugins/LINUXAMD64/molfile"
-
-echo "Compilation Done"
+make install
