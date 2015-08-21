@@ -11,7 +11,7 @@ BUILDDIR="$HOME/build"
 UNAME=$(uname -m)
 if [ "$UNAME" = "x86_64" ]; then
   ARCH=LINUXAMD64
-elif [ "$UNAME" = "i386" ]; then
+elif [ "$UNAME" = "i686" ]; then
   ARCH=LINUX
 else
   echo "Error: unsupported architecture"
@@ -31,7 +31,7 @@ fi
 MD5SUM=`md5sum "$SOURCE" | awk '{print $1}'`
 if [ "$UNAME" = "x86_64" -a "$MD5SUM" = "ff8b8a761822ebbb9be0e9f450d123b0" ]; then
   VERSION="1.9.2"
-elif [ "$UNAME" = "i386" -a "$MD5SUM" = "e14abdbf5b8062d657f2a9cb4004e37d" ]; then
+elif [ "$UNAME" = "i686" -a "$MD5SUM" = "e14abdbf5b8062d657f2a9cb4004e37d" ]; then
   VERSION="1.9.2"
 else
   echo "Error: unknown version, architecture mismatch, or corrupted archive"
