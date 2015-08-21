@@ -120,7 +120,6 @@ class Frame(wx.Frame):
     def OnHelp(self, event):
         wx.BeginBusyCursor() 
         import webbrowser
-        print 'file://' + scriptdir + '/help.html'
         webbrowser.open('file://' + scriptdir + '/help.html') 
         wx.EndBusyCursor() 
         
