@@ -1,6 +1,6 @@
 vmd-setup		/usr/bin
 *.py			/usr/share/vmd-setup
-*.sh		/usr/share/vmd-setup
+compile.sh		/usr/share/vmd-setup
 help.html		/usr/share/vmd-setup
 vmd-*.patch		/usr/share/vmd-setup
 *.1			/usr/share/man/man1

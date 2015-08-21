@@ -5,6 +5,7 @@
 import os
 import sys
 import mechanize
+import subprocess
 
 import config
 
@@ -28,9 +29,8 @@ def Download(username, password, targetdir):
         req = br.find_link(text='this link')
         archive = req.url.split('/').pop()
         print "Retrieving " + archive + " ..."
-        f = br.retrieve(config.base_url + req.url)[0]
-        print "Writing to " + targetdir + "/" + archive + " ..."
-        open(targetdir + "/" + archive, "w").write(open(f).read())
+        cmd = ['wget', '--output-document=' + targetdir + "/" + archive, config.base_url + req.url]
+	p = subprocess.check_call(cmd)
         print "Done."
     except:
         print "Error occurs. Download failed."
