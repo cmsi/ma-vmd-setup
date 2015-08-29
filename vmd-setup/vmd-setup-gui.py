@@ -203,7 +203,12 @@ class Frame(wx.Frame):
     def OnStart(self, event):
         vmd = os.path.join(self.prefix, 'bin', 'vmd')
         if (os.path.exists(vmd)):
-            cmd = ['/usr/bin/gnome-terminal', '-e', vmd]
+            if (os.path.exists('/usr/bin/gnome-terminal')):
+                cmd = ['/usr/bin/gnome-terminal', '-e', vmd]
+            elif (os.path.exists('/usr/bin/lxterminal')):
+                cmd = ['/usr/bin/lxterminal', '-e', vmd]
+            else:
+                return
             subprocess.Popen(cmd)
             self.Destroy()
 
