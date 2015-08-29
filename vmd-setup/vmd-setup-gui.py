@@ -24,7 +24,7 @@ class Frame(wx.Frame):
 
         layout = wx.BoxSizer(wx.VERTICAL)
 
-        self.radio_download = wx.RadioButton(self.panel, -1, "Download source tarball from official website")
+        self.radio_download = wx.RadioButton(self.panel, -1, "Download a binary archive from official website")
         self.radio_download.Bind(wx.EVT_RADIOBUTTON, self.OnChooseRadioDownload)
         self.radio_download.SetValue(True)
         layout.Add(self.radio_download, 0, wx.LEFT | wx.RIGHT | wx.TOP, 10)
@@ -32,7 +32,6 @@ class Frame(wx.Frame):
         self.text_username = wx.TextCtrl(self.panel, -1, size = (285, -1))
         self.text_username.Bind(wx.EVT_TEXT, self.OnTextUsername)
         self.text_password = wx.TextCtrl(self.panel, -1) # style = wx.TE_PASSWORD
-        # self.text_password.SetMaxLength(8)
         self.text_password.Bind(wx.EVT_TEXT, self.OnTextPassword)
         grid_1.Add(wx.StaticText(self.panel, -1, '     '), 0)
         grid_1.Add(wx.StaticText(self.panel, -1, "Username:"), 0, wx.RIGHT, 4)
@@ -42,7 +41,7 @@ class Frame(wx.Frame):
         grid_1.Add(self.text_password, 1, wx.EXPAND | wx.TOP, 4)
         layout.Add(grid_1, 0, wx.LEFT | wx.RIGHT | wx.TOP, 10)
 
-        self.radio_local = wx.RadioButton(self.panel, -1, "Use a source tarball on local storage")
+        self.radio_local = wx.RadioButton(self.panel, -1, "Use a binary archive on local storage")
         self.radio_local.Bind(wx.EVT_RADIOBUTTON, self.OnChooseRadioLocal)
         layout.Add(self.radio_local, 0, wx.LEFT | wx.RIGHT | wx.TOP, 10)
 
@@ -65,9 +64,12 @@ class Frame(wx.Frame):
         self.button_cancel.Bind(wx.EVT_BUTTON, self.OnCancel)
         self.button_install = wx.Button(self.panel, -1, "Install", size=(70,30))
         self.button_install.Bind(wx.EVT_BUTTON, self.OnInstall)
+        self.button_start = wx.Button(self.panel, -1, "Start VMD", size=(90,30))
+        self.button_start.Bind(wx.EVT_BUTTON, self.OnStart)
         box_1.Add(self.button_help, 0, wx.LEFT | wx.BOTTOM, 5)
         box_1.Add(self.button_cancel, 0, wx.LEFT | wx.BOTTOM, 5)
         box_1.Add(self.button_install, 0, wx.LEFT | wx.BOTTOM, 5)
+        box_1.Add(self.button_start, 0, wx.LEFT | wx.BOTTOM, 5)
         layout.Add(box_1, 0, wx.ALIGN_BOTTOM | wx.ALIGN_RIGHT | wx.RIGHT | wx.TOP, 10)
 
         self.text_log = wx.TextCtrl(self.panel, -1, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(50,10))
@@ -166,7 +168,7 @@ class Frame(wx.Frame):
                     dialog.Destroy()
                 else:
                     dialog = wx.MessageBox('Installation completed', 'VMD Setup')
-                    self.Destroy()
+                    # self.Destroy()
                 self.UpdateState()
 
     def OnInstall(self, event):
@@ -192,11 +194,23 @@ class Frame(wx.Frame):
             if (file):
                 self.StartCompile(file)
             else:
-                dialog = wx.MessageDialog(None, 'Please specify source archive', 'Error',
+                dialog = wx.MessageDialog(None, 'Please specify a binary archive', 'Error',
                                           wx.OK | wx.ICON_ERROR)
                 dialog.ShowModal()
                 dialog.Destroy()
         self.UpdateState()
+
+    def OnStart(self, event):
+        vmd = os.path.join(self.prefix, 'bin', 'vmd')
+        if (os.path.exists(vmd)):
+            if (os.path.exists('/usr/bin/gnome-terminal')):
+                cmd = ['/usr/bin/gnome-terminal', '-e', vmd]
+            elif (os.path.exists('/usr/bin/lxterminal')):
+                cmd = ['/usr/bin/lxterminal', '-e', vmd]
+            else:
+                return
+            subprocess.Popen(cmd)
+            self.Destroy()
 
     def OnTextUsername(self, event):
         self.UpdateState()
@@ -210,7 +224,7 @@ class Frame(wx.Frame):
             path = os.path.dirname(self.text_file.GetValue())
         else:
             path = os.environ['HOME']
-        dialog = wx.FileDialog(self, "Choose a source archive", path, '', wildCard, wx.OPEN)
+        dialog = wx.FileDialog(self, "Choose a binary archive", path, '', wildCard, wx.OPEN)
         if dialog.ShowModal() == wx.ID_OK:
             self.text_file.SetValue(dialog.GetPath())
             self.radio_local.SetValue(True)
@@ -249,6 +263,7 @@ class Frame(wx.Frame):
             self.button_choose.Disable()
             self.button_help.Disable()
             self.button_install.Disable()
+            self.button_start.Disable()
         else:
             self.radio_download.Enable()
             self.radio_local.Enable()
@@ -270,6 +285,10 @@ class Frame(wx.Frame):
                     self.button_install.Enable()
                 else:
                     self.button_install.Disable()
+            if (os.path.exists(os.path.join(self.prefix, 'bin', 'vmd'))):
+                self.button_start.Enable()
+            else:
+                self.button_start.Disable()
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
