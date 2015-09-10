@@ -31,7 +31,7 @@ class Frame(wx.Frame):
         grid_1 = wx.FlexGridSizer(2, 3)
         self.text_username = wx.TextCtrl(self.panel, -1, size = (285, -1))
         self.text_username.Bind(wx.EVT_TEXT, self.OnTextUsername)
-        self.text_password = wx.TextCtrl(self.panel, -1) # style = wx.TE_PASSWORD
+        self.text_password = wx.TextCtrl(self.panel, -1, style = wx.TE_PASSWORD)
         self.text_password.Bind(wx.EVT_TEXT, self.OnTextPassword)
         grid_1.Add(wx.StaticText(self.panel, -1, '     '), 0)
         grid_1.Add(wx.StaticText(self.panel, -1, "Username:"), 0, wx.RIGHT, 4)
