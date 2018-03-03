@@ -4,11 +4,12 @@ import platform
 
 base_url = "http://www.ks.uiuc.edu"
 path = "Development/Download/download.cgi"
-vmd_version = "1.9.2"
 if platform.machine() == 'x86_64':
-  archive_id = "1334"
-  arch = "LINUXAMD64"
+  vmd_version = "1.9.3"
+  archive_id = "1475"
+  arch = "LINUXAMD64-CUDA8-OptiX4-OSPRay111p1"
 else:
+  vmd_version = "1.9.2"
   archive_id = "1333"
   arch = "LINUX"
 tarball = "vmd-" + vmd_version + ".bin." + arch + ".opengl.tar.gz"
