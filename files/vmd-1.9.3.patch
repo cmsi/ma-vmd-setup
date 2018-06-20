@@ -1,6 +1,6 @@
-diff -crN vmd-1.9.2.orig/bin/vmd.csh vmd-1.9.2/bin/vmd.csh
-*** vmd-1.9.2.orig/bin/vmd.csh	2014-12-30 12:25:36.000000000 +0900
---- vmd-1.9.2/bin/vmd.csh	2018-06-20 18:53:03.488463191 +0900
+diff -crN vmd-1.9.3.orig/bin/vmd.csh vmd-1.9.3/bin/vmd.csh
+*** vmd-1.9.3.orig/bin/vmd.csh	2016-12-01 08:44:19.000000000 +0900
+--- vmd-1.9.3/bin/vmd.csh	2018-06-20 18:51:14.631088639 +0900
 ***************
 *** 62,73 ****
   # set a default window position, where x is 0 at the left side of the screen
@@ -46,7 +46,7 @@ diff -crN vmd-1.9.2.orig/bin/vmd.csh vmd-1.9.2/bin/vmd.csh
   
   # set the default geometry (size/position) used for the VMD command window
 ***************
-*** 327,335 ****
+*** 343,351 ****
     set rlwrap=`which rlwrap`
     if ( -x "$rlwrap" ) then
       if ( -f ${MASTERVMDDIR}/vmd_completion.dat ) then 
@@ -56,7 +56,7 @@ diff -crN vmd-1.9.2.orig/bin/vmd.csh vmd-1.9.2/bin/vmd.csh
       endif
     endif
   endif
---- 327,335 ----
+--- 343,351 ----
     set rlwrap=`which rlwrap`
     if ( -x "$rlwrap" ) then
       if ( -f ${MASTERVMDDIR}/vmd_completion.dat ) then 

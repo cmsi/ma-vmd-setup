@@ -29,8 +29,8 @@ if [ -f "$SOURCE" ]; then :; else
   exit 127
 fi
 MD5SUM=`md5sum "$SOURCE" | awk '{print $1}'`
-if [ "$UNAME" = "x86_64" -a "$MD5SUM" = "ff8b8a761822ebbb9be0e9f450d123b0" ]; then
-  VERSION="1.9.2"
+if [ "$UNAME" = "x86_64" -a "$MD5SUM" = "7f0cefa52e4ac3645018512fed70e474" ]; then
+  VERSION="1.9.3"
 elif [ "$UNAME" = "i686" -a "$MD5SUM" = "e14abdbf5b8062d657f2a9cb4004e37d" ]; then
   VERSION="1.9.2"
 else
