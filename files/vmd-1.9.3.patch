@@ -1,0 +1,68 @@
+diff -crN vmd-1.9.3.orig/bin/vmd.csh vmd-1.9.3/bin/vmd.csh
+*** vmd-1.9.3.orig/bin/vmd.csh	2016-12-01 08:44:19.000000000 +0900
+--- vmd-1.9.3/bin/vmd.csh	2018-06-20 18:51:14.631088639 +0900
+***************
+*** 62,73 ****
+  # set a default window position, where x is 0 at the left side of the screen
+  # and y is 0 at the bottom of the screen.
+  if ($?VMDSCRPOS == "0") then
+!   setenv VMDSCRPOS "596 190"
+  endif
+  
+  # set a default window size.
+  if ($?VMDSCRSIZE == "0") then
+!   setenv VMDSCRSIZE "669 834"
+  endif
+  
+  # set a default screen height
+--- 62,73 ----
+  # set a default window position, where x is 0 at the left side of the screen
+  # and y is 0 at the bottom of the screen.
+  if ($?VMDSCRPOS == "0") then
+!   setenv VMDSCRPOS "296 60"
+  endif
+  
+  # set a default window size.
+  if ($?VMDSCRSIZE == "0") then
+!   setenv VMDSCRSIZE "450 450"
+  endif
+  
+  # set a default screen height
+***************
+*** 82,88 ****
+  
+  # set the default behavior for enable/disable of the VMD title screen
+  if ($?VMDTITLE == "0") then
+!   setenv VMDTITLE on
+  endif
+  
+  # set the default geometry (size/position) used for the VMD command window
+--- 82,88 ----
+  
+  # set the default behavior for enable/disable of the VMD title screen
+  if ($?VMDTITLE == "0") then
+!   setenv VMDTITLE off
+  endif
+  
+  # set the default geometry (size/position) used for the VMD command window
+***************
+*** 343,351 ****
+    set rlwrap=`which rlwrap`
+    if ( -x "$rlwrap" ) then
+      if ( -f ${MASTERVMDDIR}/vmd_completion.dat ) then 
+!       set vmdprefixcmd="rlwrap -C vmd -c -b(){}[],&^%#;|\\ -f ${MASTERVMDDIR}/vmd_completion.dat "
+      else 
+!       set vmdprefixcmd="rlwrap -C vmd -c -b(){}[],&^%#;|\\ "
+      endif
+    endif
+  endif
+--- 343,351 ----
+    set rlwrap=`which rlwrap`
+    if ( -x "$rlwrap" ) then
+      if ( -f ${MASTERVMDDIR}/vmd_completion.dat ) then 
+!       set vmdprefixcmd="rlwrap -C vmd -c -f ${MASTERVMDDIR}/vmd_completion.dat "
+      else 
+!       set vmdprefixcmd="rlwrap -C vmd -c "
+      endif
+    endif
+  endif
