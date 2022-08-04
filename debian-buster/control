@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: vmd-setup
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, csh, pypthon3-wxgtk4.0, python-mechanize
+Depends: ${misc:Depends}, ${python:Depends}, csh, python-wxgtk3.0, python-mechanize
 Description: GUI utility for installing VMD
  vmd-setup is a GUI utility for downloading the source code of
  VMD from the official website and installing it under $HOME/bin
