@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 import platform
 
@@ -15,9 +15,9 @@ else:
 tarball = "vmd-" + vmd_version + ".bin." + arch + ".opengl.tar.gz"
 
 if __name__ == '__main__':
-    print "base_url    =", base_url
-    print "path        =", path
-    print "vmd_version =", vmd_version
-    print "archive_id  =", archive_id
-    print "arch        =", arch
-    print "tarball     =", tarball
+    print("base_url    =", base_url)
+    print("path        =", path)
+    print("vmd_version =", vmd_version)
+    print("archive_id  =", archive_id)
+    print("arch        =", arch)
+    print("tarball     =", tarball)
