@@ -15,12 +15,12 @@ def Download(username, password, targetdir):
     try:
         br = mechanize.Browser()
 
-        print "Accessing to " + config.base_url + " ..."
+        print("Accessing to " + config.base_url + " ...")
         br.open(config.base_url + "/" + config.path + "?UserID=&AccessCode=&ArchiveID=" + config.archive_id)
         br.select_form(nr = 1)
         br["UserName"] = username
         br["Password"] = password
-        print "Submitting username and password..."
+        print("Submitting username and password...")
         response = br.submit()
 
         br.select_form(nr = 3)
@@ -28,18 +28,18 @@ def Download(username, password, targetdir):
 
         req = br.find_link(text='this link')
         archive = req.url.split('/').pop()
-        print "Retrieving " + archive + " ..."
+        print("Retrieving " + archive + " ...")
         cmd = ['wget', '--output-document=' + targetdir + "/" + archive, config.base_url + req.url]
-	p = subprocess.check_call(cmd)
-        print "Done."
+        p = subprocess.check_call(cmd)
+        print("Done.")
     except:
-        print "Error occurs. Download failed."
+        print("Error occurs. Download failed.")
         return 127
     return 0
 
 if __name__ == '__main__':
     if (len(sys.argv) != 4):
-        print "Usage:", sys.argv[0], "username", "password", "target_directory"
+        print("Usage:", sys.argv[0], "username", "password", "target_directory")
         sys.exit(127)
     username = sys.argv[1]
     password = sys.argv[2]
